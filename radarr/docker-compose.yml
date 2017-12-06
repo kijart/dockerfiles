@@ -1,0 +1,15 @@
+version: '3'
+services:
+  radarr:
+    image: "linuxserver/radarr"
+    ports:
+      - "10.8.0.1:7878:7878"
+    environment:
+      PGID: "1000"
+      PUID: "1000"
+      TZ: "Europe/Madrid"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./config:/config
+      - ../kodi/media/movies:/movies
+      - ../transmission/downloads/complete:/downloads
