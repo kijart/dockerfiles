@@ -1,0 +1,40 @@
+version: '3'
+services:
+  jackett:
+    image: "linuxserver/jackett"
+    ports:
+      - "10.8.0.1:9117:9117"
+    environment:
+      PGID: "1000"
+      PUID: "1000"
+      TZ: "Europe/Madrid"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./config/jackett:/config
+      - ./downloads/jackett:/downloads
+  sonarr:
+    image: "linuxserver/sonarr"
+    ports:
+      - "10.8.0.1:8989:8989"
+    environment:
+      PGID: "1000"
+      PUID: "1000"
+      TZ: "Europe/Madrid"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./config/sonarr:/config
+      - ../kodi/media/series:/tv
+      - ../transmission/downloads/complete:/downloads
+  radarr:
+    image: "linuxserver/radarr"
+    ports:
+      - "10.8.0.1:7878:7878"
+    environment:
+      PGID: "1000"
+      PUID: "1000"
+      TZ: "Europe/Madrid"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./config/radarr:/config
+      - ../kodi/media/movies:/movies
+      - ../transmission/downloads/complete:/downloads
