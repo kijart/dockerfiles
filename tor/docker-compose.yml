@@ -1,0 +1,16 @@
+version: '3'
+services:
+  tor-es:
+    image: "dperson/torproxy"
+    ports:
+      - "10.8.0.1:8118:8118"
+      - "10.8.0.1:9050:9050"
+    environment:
+      LOCATION: "ES"
+  tor-us:
+    image: "dperson/torproxy"
+    ports:
+      - "10.8.0.1:8119:8118"
+      - "10.8.0.1:9051:9050"
+    environment:
+      LOCATION: "US"
