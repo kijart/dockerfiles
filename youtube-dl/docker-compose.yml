@@ -1,6 +1,8 @@
-version: '3'
+version: "3"
+
 services:
   youtube-dl:
-    image: "kijart/youtube-dl"
+    image: kijart/youtube-dl
+    container_name: youtube-dl
     volumes:
       - .:/media

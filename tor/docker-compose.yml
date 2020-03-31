@@ -1,16 +1,22 @@
-version: '3'
+version: "3"
+
 services:
   tor-es:
-    image: "dperson/torproxy"
+    image: dperson/torproxy
+    container_name: tor-es
     ports:
-      - "10.8.0.1:8118:8118"
-      - "10.8.0.1:9050:9050"
+      - 8118:8118
+      - 9050:9050
     environment:
-      LOCATION: "ES"
+      LOCATION: ES
+    restart: unless-stopped
+
   tor-us:
-    image: "dperson/torproxy"
+    image: dperson/torproxy
+    container_name: tor-us
     ports:
-      - "10.8.0.1:8119:8118"
-      - "10.8.0.1:9051:9050"
+      - 8119:8118
+      - 9051:9050
     environment:
-      LOCATION: "US"
+      LOCATION: US
+    restart: unless-stopped

@@ -1,40 +1,49 @@
-version: '3'
+version: "3"
+
 services:
   jackett:
-    image: "linuxserver/jackett"
+    image: linuxserver/jackett
+    container_name: jackett
     ports:
-      - "10.8.0.1:9117:9117"
+      - 9117:9117
     environment:
-      PGID: "1000"
-      PUID: "1000"
-      TZ: "Europe/Madrid"
+      PGID: 1000
+      PUID: 1000
+      TZ: Europe/Madrid
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./config/jackett:/config
       - ./downloads/jackett:/downloads
+    restart: unless-stopped
+
   sonarr:
-    image: "linuxserver/sonarr"
+    image: linuxserver/sonarr
+    container_name: sonarr
     ports:
-      - "10.8.0.1:8989:8989"
+      - 8989:8989
     environment:
-      PGID: "1000"
-      PUID: "1000"
-      TZ: "Europe/Madrid"
+      PGID: 1000
+      PUID: 1000
+      TZ: Europe/Madrid
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./config/sonarr:/config
       - ../kodi/media/series:/tv
       - ../transmission/downloads/complete:/downloads
+    restart: unless-stopped
+
   radarr:
-    image: "linuxserver/radarr"
+    image: linuxserver/radarr
+    container_name: radarr
     ports:
-      - "10.8.0.1:7878:7878"
+      - 7878:7878
     environment:
-      PGID: "1000"
-      PUID: "1000"
-      TZ: "Europe/Madrid"
+      PGID: 1000
+      PUID: 1000
+      TZ: Europe/Madrid
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./config/radarr:/config
       - ../kodi/media/movies:/movies
       - ../transmission/downloads/complete:/downloads
+    restart: unless-stopped

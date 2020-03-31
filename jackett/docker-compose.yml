@@ -1,14 +1,17 @@
-version: '3'
+version: "3"
+
 services:
   jackett:
-    image: "linuxserver/jackett"
+    image: linuxserver/jackett
+    container_name: jackett
     ports:
-      - "10.8.0.1:9117:9117"
+      - 9117:9117
     environment:
-      PGID: "1000"
-      PUID: "1000"
-      TZ: "Europe/Madrid"
+      PGID: 1000
+      PUID: 1000
+      TZ: Europe/Madrid
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./config:/config
       - ./downloads:/downloads
+    restart: unless-stopped
