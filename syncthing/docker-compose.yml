@@ -4,15 +4,16 @@ services:
   syncthing:
     image: linuxserver/syncthing:latest
     container_name: syncthing
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Madrid
-      - UMASK_SET=022
-    volumes:
-      - ./config:/config
-      - ./data:/data
     ports:
       - 8384:8384
       - 22000:22000
       - 21027:21027/udp
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/Madrid
+      UMASK_SET: 022
+    volumes:
+      - ./config:/config
+      - ./data:/data
+    restart: unless-stopped
