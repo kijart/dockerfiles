@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  calibre-web:
+    image: linuxserver/calibre-web
+    container_name: calibre-web
+    ports:
+      - 8083:8083
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/Madrid
+      DOCKER_MODS: linuxserver/calibre-web:calibre
+    volumes:
+      - ./config:/config
+      - ./books:/books
+    restart: unless-stopped
